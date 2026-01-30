@@ -97,7 +97,7 @@
                             <ui:template>
                                 <Text id="_IDGenText3" text="{detailModel>Faksp}" />
                             </ui:template>
-                        </ui:Column>
+                        </ui:Column>    
 
                     </ui:columns>
                 </ui:Table>
