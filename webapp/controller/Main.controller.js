@@ -20,11 +20,20 @@ sap.ui.define(
     return Controller.extend("milestone.controller.Main", {
       onInit: function () {
       },
+
+      onBeforeVariantFetch: function (oEvent) {
+        // Varyant kaydedilmeden önce özel filtre verilerini işlemek için kullanılır
+      },
+
+      onAfterVariantLoad: function (oEvent) {
+        // Varyant yüklendikten sonra özel filtre verilerini geri yüklemek için kullanılır
+      },
+
       onOpenDetailDialog: function (oEvent) {
         var oView = this.getView();
-        var oButton = oEvent.getSource();
+        var oSource = oEvent.getSource();
 
-        var oBindingContext = oButton.getBindingContext();
+        var oBindingContext = oSource.getBindingContext();
 
         if (!oBindingContext) {
           var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
