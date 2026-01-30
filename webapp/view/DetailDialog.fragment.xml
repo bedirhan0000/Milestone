@@ -1,0 +1,112 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:ui="sap.ui.table">
+
+    <Dialog id="detailDialog"
+        title="{i18n>detailDialogTitle} - {detailModel>/Vbeln}"
+        contentWidth="80%"
+        contentHeight="60%"
+        resizable="true"
+        draggable="true">
+
+        <content>
+            <VBox id="_IDGenVBox" class="sapUiSmallMargin">
+
+                <ObjectHeader id="_IDGenObjectHeader"
+                    title="{detailModel>/Post1}"
+                    number="{
+                        parts:[{path:'detailModel>/TopFaturalanan'},{path:'detailModel>/Waerk'}],
+                        type: 'sap.ui.model.type.Currency',
+                        formatOptions: {showMeasure: false}
+                    }"
+                    numberUnit="{detailModel>/Waerk}">
+                    <attributes>
+                        <ObjectAttribute id="_IDGenObjectAttribute" title="{i18n>colVbeln}" text="{detailModel>/Vbeln}"
+                            active="true" />
+                        <ObjectAttribute id="_IDGenObjectAttribute1" title="{i18n>customerLabel}" text="{detailModel>/CustomerName}" />
+                    </attributes>
+                    <statuses>
+                        <ObjectStatus id="_IDGenObjectStatus"
+                            title="{i18n>openBalanceLabel}"
+                            text="{
+                                parts:[{path:'detailModel>/TopAcikBakiye'},{path:'detailModel>/Waerk'}],
+                                type: 'sap.ui.model.type.Currency',
+                                formatOptions: {showMeasure: false}
+                            }"
+                            state="Warning" />
+                    </statuses>
+                </ObjectHeader>
+
+                <ui:Table id="detailTable"
+                    rows="{detailModel>/ToItems}"
+                    selectionMode="None"
+                    visibleRowCount="7"
+                    ariaLabelledBy="title">
+
+                    <ui:extension>
+                        <OverflowToolbar id="_IDGenOverflowToolbar">
+                            <Title id="_IDGenTitle" text="{i18n>detailTableTitle}" />
+                        </OverflowToolbar>
+                    </ui:extension>
+
+                    <ui:columns>
+
+                        <ui:Column id="_IDGenColumn1" width="14rem">
+                            <Label id="_IDGenLabel" text="{i18n>descriptionLabel}" />
+                            <ui:template>
+                                <Text id="_IDGenText" text="{detailModel>StepTanim}" />
+                            </ui:template>
+                        </ui:Column>
+
+                        <ui:Column id="_IDGenColumn2" width="8rem">
+                            <Label id="_IDGenLabel1" text="{i18n>invoiceDateLabel}" />
+                            <ui:template>
+                                <Text id="_IDGenText1"
+                                    text="{
+                                    path: 'detailModel>Fkdat',
+                                    type: 'sap.ui.model.type.Date',
+                                    formatOptions: { pattern: 'dd.MM.yyyy' }
+                                }" />
+                            </ui:template>
+                        </ui:Column>
+
+                        <ui:Column id="_IDGenColumn3" width="9rem" hAlign="End">
+                            <Label id="_IDGenLabel2" text="{i18n>amountLabel}" />
+                            <ui:template>
+                                <ObjectNumber id="_IDGenObjectNumber2"
+                                    number="{
+                                        parts:[{path:'detailModel>Fakwr'},{path:'detailModel>Waerk'}],
+                                        type: 'sap.ui.model.type.Currency',
+                                        formatOptions: {showMeasure: false}
+                                    }"
+                                    unit="{detailModel>Waerk}"
+                                    state="{detailModel>StatusState}" />
+                            </ui:template>
+                        </ui:Column>
+
+                        <ui:Column id="_IDGenColumn4" width="6rem" hAlign="Center">
+                            <Label id="_IDGenLabel3" text="{i18n>paymentTermsLabel}" />
+                            <ui:template>
+                                <Text id="_IDGenText2" text="{detailModel>Zterm}" />
+                            </ui:template>
+                        </ui:Column>
+
+                        <ui:Column id="_IDGenColumn11" width="5rem" hAlign="Center">
+                            <Label id="_IDGenLabel4" text="{i18n>blockLabel}" />
+                            <ui:template>
+                                <Text id="_IDGenText3" text="{detailModel>Faksp}" />
+                            </ui:template>
+                        </ui:Column>
+
+                    </ui:columns>
+                </ui:Table>
+
+            </VBox>
+        </content>
+
+        <buttons>
+            <Button id="_IDGenButton" text="{i18n>btnClose}" press=".onCloseDetailDialog" type="Emphasized" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

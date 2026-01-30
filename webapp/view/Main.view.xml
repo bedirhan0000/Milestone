@@ -1,0 +1,136 @@
+<mvc:View controllerName="milestone.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    displayBlock="true"
+    height="100%">
+
+    <Page id="page" title="{i18n>appTitle}" showHeader="true" enableScrolling="true">
+        <content>
+
+            <smartFilterBar:SmartFilterBar id="smartFilterBar"
+                entitySet="GetMainDataSet"
+                persistencyKey="FilterBar_FinalFix_V2"
+                enableBasicSearch="false"
+                liveMode="false"
+                showFilterConfiguration="true"
+                useToolbar="false">
+
+                <smartFilterBar:controlConfiguration>
+
+                    <smartFilterBar:ControlConfiguration id="_IDGenControlConfiguration" key="Vbeln"
+                        groupId="_BASIC"
+                        visibleInAdvancedArea="true"
+                        visible="true"
+                        index="0"
+                        label="{i18n>colVbeln}"
+                        preventInitialDataFetchInValueHelpDialog="false" />
+
+                    <smartFilterBar:ControlConfiguration id="_IDGenControlConfiguration1" key="Post1"
+                        groupId="_BASIC"
+                        visibleInAdvancedArea="true"
+                        visible="true"
+                        index="1"
+                        label="{i18n>colPost1}" />
+
+                    <smartFilterBar:ControlConfiguration id="_IDGenControlConfiguration2" key="Waerk"
+                        groupId="_BASIC"
+                        visibleInAdvancedArea="true"
+                        visible="false"
+                        index="2"
+                        label="{i18n>colWaerk}" />
+
+                </smartFilterBar:controlConfiguration>
+            </smartFilterBar:SmartFilterBar>
+
+            <smartTable:SmartTable id="smartTable"
+                entitySet="GetMainDataSet"
+                smartFilterId="smartFilterBar"
+                tableType="ResponsiveTable"
+                useExportToExcel="true"
+                useVariantManagement="true"
+                useTablePersonalisation="true"
+                header="{i18n>tableHeader}"
+                showRowCount="true"
+                enableAutoBinding="true"
+                fitContainer="false"
+                requestAtLeastFields="Vbeln,Waerk"
+                class="sapUiResponsiveContentPadding">
+
+                <Table id="innerTable"
+                    growing="true"
+                    growingThreshold="500"
+                    growingScrollToLoad="true"
+                    fixedLayout="true"
+                    sticky="ColumnHeaders">
+
+                    <columns>
+                        <Column id="_IDGenColumn5" width="8rem">
+                            <customData>
+                                <core:CustomData key="p13nData"
+                                    value='\{"columnKey": "Vbeln", "leadingProperty": "Vbeln", "sortProperty": "Vbeln", "filterProperty": "Vbeln", "columnIndex": 0}' />
+                            </customData>
+                            <Text id="_IDGenText8" text="{i18n>colVbeln}" />
+                        </Column>
+
+                        <Column id="_IDGenColumn6" width="15rem">
+                            <customData>
+                                <core:CustomData key="p13nData"
+                                    value='\{"columnKey": "Post1", "leadingProperty": "Post1", "sortProperty": "Post1", "filterProperty": "Post1", "columnIndex": 1}' />
+                            </customData>
+                            <Text id="_IDGenText10" text="{i18n>colPost1}" />
+                        </Column>
+
+                        <Column id="_IDGenColumn7" width="10rem" hAlign="End">
+                            <customData>
+                                <core:CustomData key="p13nData"
+                                    value='\{"columnKey": "TopFaturalanan", "leadingProperty": "TopFaturalanan", "sortProperty": "TopFaturalanan", "filterProperty": "TopFaturalanan", "columnIndex": 2}' />
+                            </customData>
+                            <Text id="_IDGenText11" text="{i18n>colTopFaturalanan}" />
+                        </Column>
+
+                        <Column id="_IDGenColumn8" width="10rem" hAlign="End">
+                            <customData>
+                                <core:CustomData key="p13nData"
+                                    value='\{"columnKey": "TopAcikBakiye", "leadingProperty": "TopAcikBakiye", "sortProperty": "TopAcikBakiye", "filterProperty": "TopAcikBakiye", "columnIndex": 3}' />
+                            </customData>
+                            <Text id="_IDGenText12" text="{i18n>colTopAcikBakiye}" />
+                        </Column>
+
+                        <Column id="_IDGenColumn9" width="4rem" hAlign="Center">
+                            <customData>
+                                <core:CustomData key="p13nData"
+                                    value='\{"columnKey": "Waerk", "leadingProperty": "Waerk", "sortProperty": "Waerk", "filterProperty": "Waerk", "columnIndex": 4}' />
+                            </customData>
+                            <Text id="_IDGenText13" text="{i18n>colWaerk}" />
+                        </Column>
+
+                        <Column id="_IDGenColumn10" width="4rem" hAlign="Center">
+                            <Text id="_IDGenText14" text="{i18n>colDetail}" />
+                        </Column>
+                    </columns>
+
+                    <items>
+                        <ColumnListItem id="_IDGenColumnListItem" type="Inactive">
+                            <cells>
+                                <Text id="_IDGenText15" text="{Vbeln}" />
+                                <Text id="_IDGenText16" text="{Post1}" />
+                                <ObjectNumber id="_IDGenObjectNumber"
+                                    number="{parts:[{path:'TopFaturalanan'},{path:'Waerk'}], type:'sap.ui.model.type.Currency', formatOptions:{showMeasure: false}}"
+                                    state="Success" />
+                                <ObjectNumber id="_IDGenObjectNumber1"
+                                    number="{parts:[{path:'TopAcikBakiye'},{path:'Waerk'}], type:'sap.ui.model.type.Currency', formatOptions:{showMeasure: false}}"
+                                    state="Warning" />
+                                <Text id="_IDGenText17" text="{Waerk}" />
+                                <Button id="_IDGenButton2" icon="sap-icon://detail-view" type="Ghost"
+                                    press=".onOpenDetailDialog" tooltip="{i18n>tooltipDetail}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </smartTable:SmartTable>
+        </content>
+    </Page>
+</mvc:View>
